@@ -9,7 +9,7 @@ import (
 func main() {
 	http.HandleFunc("/status", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader((http.StatusOK))
-		fmt.Fprint(w, "I am alive")
+		fmt.Fprint(w, "I am alive and all okay")
 	})
 
 	log.Println("Server is on localhost at 8080")
