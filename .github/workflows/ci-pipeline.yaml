@@ -12,7 +12,15 @@ jobs:
 
     steps:
       - name: checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4#
+      
+      - name: Install grype
+        run : |
+          curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
+      
+      - name: Run Grype
+        run: |
+          ./usr/local/bin/grype dir:. --fail-on high 
       
       - name: setup Go
         uses: actions/setup-go@v5
