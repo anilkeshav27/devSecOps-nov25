@@ -16,11 +16,11 @@ jobs:
       
       - name: Install grype
         run : |
-          curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh
       
       - name: Run Grype
         run: |
-          ./usr/local/bin/grype dir:. --fail-on high 
+          ./bin/grype dir:. --fail-on high 
       
       - name: setup Go
         uses: actions/setup-go@v5
