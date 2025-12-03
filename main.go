@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -20,6 +21,19 @@ func main() {
 			log.Fatal(err)
 		}
 		fmt.Println("generated token is :", tokenString)
+
+		db, _ := sql.Open("sqlite3", ":memory:")
+		name := r.URL.Query().Get("name")
+
+		query := "SELECT * FROM users WHERE name= '" + name + "'"
+
+		rows, err := db.Query(query)
+
+		if err != nil {
+			fmt.Fprintf(w, "error : %v", err)
+		}
+
+		defer rows.Close()
 
 	})
 
