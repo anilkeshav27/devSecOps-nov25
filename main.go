@@ -25,9 +25,9 @@ func main() {
 		db, _ := sql.Open("sqlite3", ":memory:")
 		name := r.URL.Query().Get("name")
 
-		query := "SELECT * FROM users WHERE name= '" + name + "'"
+		query := "SELECT * FROM users WHERE name = ?"
 
-		rows, err := db.Query(query)
+		rows, err := db.Query(query, name)
 
 		if err != nil {
 			fmt.Fprintf(w, "error : %v", err)
