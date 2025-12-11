@@ -1,0 +1,14 @@
+name : DAST
+
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  zap:
+    - name: zap scan
+      uses: zaproxy/action-basline@v0.11.0
+      with:
+        target: "https://abcd.com"
+        fail_action: true
+        rules_file_name:""
